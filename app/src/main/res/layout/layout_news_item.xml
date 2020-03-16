@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="me.happyclick.news.model.Article" />
+        <variable
+            name="listener"
+            type="me.happyclick.news.view.listener.ItemClickListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="@dimen/dimen_4dp"
+        app:cardElevation="@dimen/dimen_4dp"
+        android:tag="@{item.url}"
+        android:onClick="@{listener::onItemClicked}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:background="@android:color/darker_gray"
+                android:scaleType="centerCrop"
+                android:imageUrl="@{item.urlToImage}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/dimen_4dp"
+                android:text="@{item.title}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_view"
+                android:textStyle="bold"
+                tools:text="The US House of Representatives has voted to approve legislation that extends the validity of three federal surveillance tools slated to expire this weekend."
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_published_at"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dimen_8dp"
+                android:layout_marginStart="@dimen/dimen_8dp"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:padding="@dimen/dimen_4dp"
+                android:formattedDateTime="@{item.publishedAt}"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                tools:text="Tuesday, 14 Nov 2017 00:06"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
